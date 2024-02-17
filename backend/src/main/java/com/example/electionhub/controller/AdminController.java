@@ -1,14 +1,9 @@
 package com.example.electionhub.controller;
 
-
 import com.example.electionhub.model.Admin;
-import com.example.electionhub.model.Candidate;
-import com.example.electionhub.model.Election;
-import com.example.electionhub.repository.ElectionRepository;
-import com.example.electionhub.repository.CandidateRepository;
-
+import com.example.electionhub.repository.AdminRepository;
+import com.example.electionhub.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,17 +11,17 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/elections")
-public class ElectionController {
+@RequestMapping("/api/admins")
+public class AdminController {
 
     @Autowired
-    private ElectionService electionService;
+    private AdminService adminService;
 
     @PostMapping("/")
-    public Election createElection(@RequestBody Election election) {
-        return electionService.createElection(election);
+    public Admin createAdmin(@RequestBody Admin admin) {
+        return adminService.createAdmin(admin);
     }
 
-    // Other endpoints for election functionalities
+    // Other endpoints for admin functionalities
 
 }

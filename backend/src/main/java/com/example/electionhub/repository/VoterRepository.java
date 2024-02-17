@@ -7,9 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
-public interface VoterRepository extends JpaRepository<Voter, Long> {
 
-    @Query("SELECT v FROM Voter v WHERE v.name = ?1 AND v.voterId = ?2")
-    Optional<Voter> findByNameandVoterId(String name, String voterId);
+public interface VoterRepository extends JpaRepository<Voter, Long> {
 }

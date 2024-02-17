@@ -1,29 +1,21 @@
 package com.example.electionhub.controller;
 
-import com.example.electionhub.dto.VoteRequest;
-import com.example.electionhub.model.Candidate;
-import com.example.electionhub.repository.CandidateRepository;
+import com.example.electionhub.model.Vote;
+import com.example.electionhub.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/vote")
+@RequestMapping("/api/votes")
 public class VoteController {
 
     @Autowired
-    private CandidateRepository candidateRepository;
+    private VoteService voteService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping
-    public String submitVote(@RequestBody VoteRequest request) {
-        Long candidateId = request.getCandidateId();
-        Candidate candidate = candidateRepository.findById(candidateId)
-                .orElseThrow(() -> new RuntimeException("Candidate not found with id: " + candidateId));
-
-        candidate.setVote(candidate.getVote() + 1);
-        candidateRepository.save(candidate);
-
-        return "Vote submitted successfully for candidate: " + candidate.getName();
+    @PostMapping("/")
+    public Vote submitVote(@RequestBody Vote vote) {
+        return voteService.submitVote(vote);
     }
+
+    // Other endpoints for vote functionalities
+
 }

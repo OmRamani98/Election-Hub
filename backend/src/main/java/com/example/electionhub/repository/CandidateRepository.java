@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
-    @Query("SELECT c FROM Candidate c WHERE c.vote = (SELECT MAX(c2.vote) FROM Candidate c2)")
-    Candidate findTopByOrderByVoteDesc();
 }
