@@ -1,0 +1,55 @@
+/* App.css */
+
+/* Navigation menu styles */
+.App {
+  /* background-image: url(./styles/Vote.jpeg); */
+  /* background-repeat: no-repeat; */
+  /* Additional styling */
+  /* background-size: cover;  */
+  /* width: 100vw; */
+  /* height: 100vh; */
+}
+
+nav {
+  background-color: rgba(0, 0, 0, 1); /* Semi-transparent gray background */
+  /* Additional styling */
+  backdrop-filter: blur(100px);
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center the items horizontally */
+  align-items: center; /* Center the items vertically */
+  height: 70px; /* Increase the height of the navigation bar */
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Ensure list items are displayed in a row */
+}
+
+nav li {
+  margin-right: 40px; /* Increase spacing between items */
+}
+
+nav li:last-child {
+  margin-right: 0; /* Remove margin from the last list item */
+}
+
+nav li a {
+  text-decoration: none;
+  color: #fff; /* Text color for links */
+  font-weight: bold;
+  padding: 20px 30px; /* Increase padding to make clickable area larger */
+  font-size: 18px; /* Increase font size */
+  border-radius: 10px; /* Add rounded corners */
+  transition: background-color 0.3s ease;
+}
+
+nav li a:hover {
+  background-color: rgba(0, 0, 0, 0.5); /* Darker background color on hover */
+}
+
+/* Active link styles */
+nav li.active a {
+  background-color: rgba(0, 0, 0, 0.5); /* Darker background color for active link */
+}
