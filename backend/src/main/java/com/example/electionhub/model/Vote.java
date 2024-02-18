@@ -14,11 +14,30 @@ public class Vote {
     private Voter voter;
 
     @ManyToOne
+    @JoinColumn(name = "election_id")
+    private Election election;
+
+    public Election getElection() {
+        return election;
+    }
+
+    public void setElection(Election election) {
+        this.election = election;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "candidate_id", nullable = false)
     private Candidate candidate;
 
     // Getters and setters
+    public Vote(){
 
+    }
+    public Vote(Candidate candidate,Voter voter)
+    {
+        this.candidate=candidate;
+        this.voter=voter;
+    }
     public Long getId() {
         return id;
     }

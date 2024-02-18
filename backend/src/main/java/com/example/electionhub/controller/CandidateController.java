@@ -20,10 +20,16 @@ public class CandidateController {
     private CandidateService candidateService;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/register")
-    public Candidate registerCandidate(@RequestBody Candidate candidate) {
-        return candidateService.registerCandidate(candidate);
+    @PostMapping("/register/{ElectionId}")
+    public Candidate registerCandidate(@RequestBody Candidate candidate ,@PathVariable long ElectionId) {
+         return candidateService.registerCandidate(candidate,ElectionId);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/candidates/{electionId}")
+    public List<Candidate> getAllCandidatesOfElection(@PathVariable Long electionId) {
+        return candidateService.getAllCandidatesByElectionId(electionId);
+    }
+
 
     // Other endpoints for candidate functionalities
 

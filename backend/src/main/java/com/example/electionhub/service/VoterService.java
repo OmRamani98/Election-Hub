@@ -1,4 +1,5 @@
 package com.example.electionhub.service;
+import com.example.electionhub.model.Candidate;
 import com.example.electionhub.model.Voter;
 import com.example.electionhub.repository.VoterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class VoterService {
             return null;
         }
     }
+
+    public Voter findVoterById(String voterId){ return voterRepository.findByVoterId(voterId);}
 
     // Other voter related services
 }

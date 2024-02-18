@@ -19,20 +19,14 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
-    @Autowired
-    private ElectionService electionService ;
+
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/")
     public Admin createAdmin(@RequestBody Admin admin) {
         return adminService.createAdmin(admin);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/election")
-    public Election createElection(@RequestBody Election election) {
 
-        return electionService.createElection(election);
-    }
 
     // Other endpoints for admin functionalities
 

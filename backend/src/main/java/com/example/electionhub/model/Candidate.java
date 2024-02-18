@@ -3,6 +3,9 @@ package com.example.electionhub.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Candidate {
     @Id
@@ -11,15 +14,8 @@ public class Candidate {
 
     private String name;
     private String party;
-    private int vote;
 
-    public int getVote() {
-        return vote;
-    }
 
-    public void setVote(int vote) {
-        this.vote = vote;
-    }
 
     public Long getId() {
         return id;
@@ -29,6 +25,17 @@ public class Candidate {
         this.id = id;
     }
 
+    public Election getElection() {
+        return election;
+    }
+
+    public void setElection(Election election) {
+        this.election = election;
+    }
+
+    @ManyToOne(fetch =FetchType.LAZY)
+    @JoinColumn(name = "election_id")
+    private Election election;
     public String getName() {
         return name;
     }
