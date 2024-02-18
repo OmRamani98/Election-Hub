@@ -9,4 +9,6 @@ import java.util.Optional;
 
 
 public interface VoterRepository extends JpaRepository<Voter, Long> {
+    Voter findByName(String username);
+
 }

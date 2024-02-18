@@ -13,5 +13,6 @@ public class VoteService {
         return voteRepository.save(vote);
     }
 
+
     // Other vote related services
 }

@@ -12,13 +12,15 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/candidates")
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api/candidate")
 public class CandidateController {
 
     @Autowired
     private CandidateService candidateService;
 
-    @PostMapping("/")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/register")
     public Candidate registerCandidate(@RequestBody Candidate candidate) {
         return candidateService.registerCandidate(candidate);
     }

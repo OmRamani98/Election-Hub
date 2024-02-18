@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/elections")
 public class ElectionController {
 
     @Autowired
     private ElectionService electionService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/")
     public Election createElection(@RequestBody Election election) {
         return electionService.createElection(election);

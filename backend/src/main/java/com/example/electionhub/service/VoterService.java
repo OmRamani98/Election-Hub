@@ -13,6 +13,17 @@ public class VoterService {
     public Voter registerVoter(Voter voter) {
         return voterRepository.save(voter);
     }
+    public Voter loginVoter(String name, String voterId) {
+
+        Voter voter = voterRepository.findByName(name);
+        if (voter != null && voter.getVoterId().equals(voterId)) {
+            // Successful login
+            return voter;
+        } else {
+            // Failed login
+            return null;
+        }
+    }
 
     // Other voter related services
 }

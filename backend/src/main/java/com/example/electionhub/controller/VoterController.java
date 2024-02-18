@@ -6,17 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/voters")
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api/voter")
 public class VoterController {
 
     @Autowired
     private VoterService voterService;
 
-    @PostMapping("/")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/register")
     public Voter registerVoter(@RequestBody Voter voter) {
         return voterService.registerVoter(voter);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/login")
+    public Voter loginVoter(@RequestBody Voter voter) {
+        return voterService.loginVoter(voter.getName(), voter.getVoterId());
+    }
     // Other endpoints for voter functionalities
 
 }
