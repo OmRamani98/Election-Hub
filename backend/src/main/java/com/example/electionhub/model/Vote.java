@@ -33,10 +33,11 @@ public class Vote {
     public Vote(){
 
     }
-    public Vote(Candidate candidate,Voter voter)
+    public Vote(Candidate candidate,Voter voter,Election election)
     {
         this.candidate=candidate;
         this.voter=voter;
+        this.election=election;
     }
     public Long getId() {
         return id;

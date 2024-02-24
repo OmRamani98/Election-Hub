@@ -2,6 +2,7 @@ package com.example.electionhub.controller;
 
 import com.example.electionhub.dto.VoteRequest;
 import com.example.electionhub.model.Candidate;
+import com.example.electionhub.model.Election;
 import com.example.electionhub.model.Vote;
 import com.example.electionhub.model.Voter;
 import com.example.electionhub.repository.VoteRepository;
@@ -19,29 +20,18 @@ public class VoteController {
 
     @Autowired
     private VoteService voteService;
-    @Autowired
-    private VoterService voterService;
-    @Autowired
-    private CandidateService candidateService;
-    @Autowired
-    private VoteRepository voteRepository;
+
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/submitVote/{candidateId}/{voterId}")
-    public ResponseEntity<?> submitVote(@PathVariable Long candidateId, @PathVariable String voterId) {
-        Candidate candidate = candidateService.findCandidateById(candidateId);
-        Voter voter = voterService.findVoterById(voterId);
-        Vote vote = new Vote(candidate,voter);
-        voteRepository.save(vote);
+    @PostMapping("/submitVote/{voterId}/{electionId}/{candidateId}")
+    public ResponseEntity<String> submitVote(@PathVariable Long voterId,@PathVariable Long electionId,@PathVariable Long candidateId) {
+        System.out.println("123");
+        VoteRequest voteRequest=new VoteRequest(voterId,electionId,candidateId);
+        System.out.println(voteRequest.getElectionId()+voteRequest.getVoterId()+voteRequest.getCandidateId());
 
-        return ResponseEntity.ok("Vote Successfully added");
-    }
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/cast")
-    public ResponseEntity<String> castVote(@RequestBody VoteRequest voteRequest) {
         try {
-            voteService.castVote(voteRequest);
-            return ResponseEntity.ok("Vote cast successfully.");
+            voteService.submitVote(voteRequest);
+            return ResponseEntity.ok("Vote successfully.");
         } catch (Exception e) {
            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to cast vote: " + e.getMessage());
         }

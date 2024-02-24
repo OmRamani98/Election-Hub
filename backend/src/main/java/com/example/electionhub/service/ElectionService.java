@@ -22,5 +22,10 @@ public class ElectionService {
     public List<Election> getLiveElections() {
         return electionRepository.findLiveElections();
     }
+
+    public List<Election> getCompletedElections() {
+        return electionRepository.findCompletedElections();
+    }
+
     // Other election related services
 }

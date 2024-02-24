@@ -26,6 +26,7 @@ public class ElectionController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/upcoming")
     public List<Election> getUpcomingElections() {
+
         return electionService.getUpcomingElections();
     }
 
@@ -33,6 +34,12 @@ public class ElectionController {
     @GetMapping("/live")
     public List<Election> getLiveElections() {
         return electionService.getLiveElections();
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/completed")
+    public List<Election> getCompletedElections() {
+        return electionService.getCompletedElections();
     }
 
 }

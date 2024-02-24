@@ -1,5 +1,6 @@
 package com.example.electionhub.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class Election {
 
 
     @OneToMany(mappedBy = "election", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Candidate> candidates = new HashSet<>();
 
     public Set<Candidate> getCandidates() {

@@ -27,8 +27,8 @@ public class CandidateService {
     public List<Candidate> getAllCandidates() {
             return candidateRepository.findAll();
     }
-    public List<Candidate> getAllCandidatesByElectionId(Long electionId) {
-        return candidateRepository.findAllByElectionId(electionId);
+    public List<Candidate> getAllCandidatesByElectionId(long electionId) {
+        return candidateRepository.findByElectionId(electionId);
     }
 
     public Candidate findCandidateById(Long id){ return candidateRepository.findById(id).orElse(null);}

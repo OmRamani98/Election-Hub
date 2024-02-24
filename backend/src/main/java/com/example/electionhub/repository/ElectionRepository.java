@@ -13,4 +13,7 @@ public interface ElectionRepository extends JpaRepository<Election, Long> {
 
     @Query("SELECT e FROM Election e WHERE e.startDate <= CURRENT_DATE AND e.endDate >= CURRENT_DATE")
     List<Election> findLiveElections();
+
+    @Query("SELECT e FROM Election e WHERE e.endDate < CURRENT_DATE")
+    List<Election> findCompletedElections();
 }

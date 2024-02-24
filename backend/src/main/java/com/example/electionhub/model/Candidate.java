@@ -1,6 +1,7 @@
 // Candidate.java
 package com.example.electionhub.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -35,6 +36,7 @@ public class Candidate {
 
     @ManyToOne(fetch =FetchType.LAZY)
     @JoinColumn(name = "election_id")
+    @JsonBackReference
     private Election election;
     public String getName() {
         return name;

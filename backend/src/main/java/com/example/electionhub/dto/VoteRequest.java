@@ -5,7 +5,12 @@ public class VoteRequest {
         private Long voterId;
         private Long electionId;
         private Long candidateId;
-
+public VoteRequest(Long v,Long e,Long c)
+{
+    this.voterId=v;
+    this.candidateId=c;
+    this.electionId=e;
+}
     public Long getVoterId() {
         return voterId;
     }

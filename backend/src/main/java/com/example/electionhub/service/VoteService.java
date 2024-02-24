@@ -11,15 +11,14 @@ import com.example.electionhub.repository.VoterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.logging.Logger;
+
 @Service
 public class VoteService {
 
     @Autowired
     private VoteRepository voteRepository;
-
-    public Vote submitVote(Vote vote) {
-        return voteRepository.save(vote);
-    }
 
 
     // Other vote related services
@@ -32,9 +31,10 @@ public class VoteService {
     @Autowired
     private VoterRepository voterRepository;
 
-    public void castVote(VoteRequest voteRequest) {
+    public void submitVote(VoteRequest voteRequest) {
         Election election = electionRepository.findById(voteRequest.getElectionId())
                 .orElseThrow(() -> new IllegalArgumentException("Election not found."));
+        System.out.println(voteRequest.getElectionId());
         Candidate candidate = candidateRepository.findById(voteRequest.getCandidateId())
                 .orElseThrow(() -> new IllegalArgumentException("Candidate not found."));
 
@@ -45,11 +45,8 @@ public class VoteService {
         // Check if the voter has already voted in this election
 
         // Save the vote
-        Vote vote = new Vote();
-        vote.setElection(election);
-        vote.setCandidate(candidate);
-        vote.setVoter(voter);
-        voteRepository.save(vote);
+        Vote vote = new Vote(candidate,voter,election);
+         voteRepository.save(vote);
     }
 }
 
