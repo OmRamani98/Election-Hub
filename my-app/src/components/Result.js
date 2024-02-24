@@ -1,46 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import '../styles/Result.css'; // Import CSS file
+import React, { useState } from 'react';
 
-function Result() {
-    const [winner, setWinner] = useState('');
-    const [votes, setVotes] = useState(0);
+function ElectionWinner() {
+    const [electionId, setElectionId] = useState('');
+    const [winners, setWinners] = useState([]);
     const [error, setError] = useState('');
 
-    useEffect(() => {
-        fetch('http://localhost:8080/result')
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Failed to fetch result');
-            }
-        })
-        .then(data => {
-            console.log(data);
-            setWinner(data.name);
-            setVotes(data.vote);
-        })
-        .catch(error => {
-            // Handle error
-            console.error('Error fetching result:', error);
-            setError('Failed to fetch result. Please try again later.');
-        });
-    }, []);
+    const handleInputChange = (event) => {
+        setElectionId(event.target.value);
+    };
+
+    const getWinner = () => {
+        fetch(`http://localhost:8080/api/candidate/${electionId}/winner`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    setError(data.error);
+                    setWinners('');
+                } else {
+                    setWinners(data);
+                    setError('');
+                }
+            })
+            .catch(error => {
+                setError('An error occurred while fetching the winner.');
+                setWinners('');
+            });
+    };
 
     return (
-        <div className="result-container">
-            <h2 className="result-title">Election Result</h2>
-            {error ? (
-                <p className="result-error">{error}</p>
-            ) : (
-                <div>
-                    <p className="result-winner">Winner: {winner}</p>
-                    <p className="result-votes">Total Votes: {votes}</p>
-                </div>
+        <div>
+            <h1>Election Winner</h1>
+            <label htmlFor="electionId">Enter Election ID:</label>
+            <input type="text" id="electionId" value={electionId} onChange={handleInputChange} />
+            <button onClick={getWinner}>Get Winner</button>
+
+            {error && <p>{error}</p>}
+
+            <h2>Winners</h2>
+            {winners && (
+                
+                <ul>
+                {winners.map(winner => (
+                  <li key={winner.id}>{winner.name}</li>
+                ))}
+              </ul>
             )}
-            <p className="result-note">Thank you for participating in the election.</p>
         </div>
     );
 }
 
-export default Result;
+export default ElectionWinner;

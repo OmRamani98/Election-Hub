@@ -9,7 +9,7 @@ function VoterRegistration() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(name,voterId);
-        fetch('http://localhost:8080/voter/register', {
+        fetch('http://localhost:8080/api/voter/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,27 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CandidateItem from './CandidateItem';
-import '../styles/CandidateList.css'; // Import CSS file
 
-function CandidateList() {
+function CandidateList({ electionId }) {
     const [candidates, setCandidates] = useState([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:8080/candidate/candidates')
-        .then(response => response.json())
-        .then(data => setCandidates(data))
-        .catch(error => console.error('Error fetching candidates:', error));
-    }, []);
+        const fetchCandidates = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/candidate/candidates/${electionId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                   
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setCandidates(data);
+                } else {
+                    setError('Failed to fetch candidates');
+                }
+            } catch (error) {
+                setError('Network error. Please try again later.');
+            }
+        };
+        fetchCandidates();
+    }, [electionId]);
 
     return (
-        <div className="candidate-list-container">
-            <center><h2 className="candidate-list-header">Candidates</h2></center>
-            {candidates.map(candidate => (
-                <div className="candidate-item" key={candidate.id}>
-                    <h3 className="candidate-name">{candidate.name}</h3>
-                    <p className="candidate-party">{candidate.party}</p>
-                    <button className="vote-button">Vote</button>
-                </div>
-            ))}
+        <div>
+            <h2>Candidates for Election</h2>
+            {error && <p>{error}</p>}
+            <ul>
+                {candidates.map(candidate => (
+                    // <li key={candidate.id}>{candidate.name} - {candidate.party}</li>
+                    <CandidateItem candidate={candidate}/>
+                ))}
+            </ul>
         </div>
     );
 }

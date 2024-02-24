@@ -6,12 +6,14 @@ import VoterLogin from './components/VoterLogin';
 import Result from './components/Result';
 import CandidateList from './components/CandidateList';
 import vote from './styles/Vote.jpeg';
+import Admin from './components/Admin';
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import LiveElectionView from './components/LiveElectionView';
 
 
 function App() {
-  const [user, setUser] = useState(null);
+ 
   return (
     <div className="App">
               <Router>
@@ -34,11 +36,13 @@ function App() {
                 </nav>
                 
                 <Routes>
+                    <Route path="/" element={<Admin />} />
                     <Route path="/voter-registration" element={<VoterRegistration />} />
                     <Route path="/candidate-registration" element={<CandidateRegistration />} />
-                    <Route path="/voter-login" element={<VoterLogin />} />
+                    <Route path="/voter-login" element={<VoterLogin  />} />
                     <Route path="/result" element={<Result />} />
                     <Route path="/candidates" element={<CandidateList />} />
+                    <Route path="/live-election" element={<LiveElectionView />} />
                     
            
                 </Routes>
