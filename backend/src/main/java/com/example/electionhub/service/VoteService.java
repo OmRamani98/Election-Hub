@@ -8,10 +8,14 @@ import com.example.electionhub.repository.CandidateRepository;
 import com.example.electionhub.repository.ElectionRepository;
 import com.example.electionhub.repository.VoteRepository;
 import com.example.electionhub.repository.VoterRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Service
@@ -48,5 +52,6 @@ public class VoteService {
         Vote vote = new Vote(candidate,voter,election);
          voteRepository.save(vote);
     }
+
 }
 

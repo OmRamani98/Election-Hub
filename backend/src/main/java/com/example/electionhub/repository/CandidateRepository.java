@@ -16,4 +16,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     @Query("SELECT c FROM Candidate c WHERE c.election.id = :electionId")
     List<Candidate> findByElectionId(Long electionId);
 
+    @Query("SELECT v.candidate FROM Vote v WHERE v.election = :election GROUP BY v.candidate HAVING COUNT(v) = (SELECT MAX(voteCount) FROM (SELECT COUNT(*) as voteCount FROM Vote WHERE election = :election GROUP BY candidate))")
+    List<Candidate> getWinners(@Param("election") Election election);
+
 }

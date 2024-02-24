@@ -1,5 +1,6 @@
 package com.example.electionhub.controller;
 
+import com.example.electionhub.model.Candidate;
 import com.example.electionhub.model.Election;
 import com.example.electionhub.repository.ElectionRepository;
 import com.example.electionhub.service.ElectionService;
@@ -41,5 +42,6 @@ public class ElectionController {
     public List<Election> getCompletedElections() {
         return electionService.getCompletedElections();
     }
+
 
 }

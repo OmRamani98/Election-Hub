@@ -4,13 +4,14 @@ import com.example.electionhub.model.Candidate;
 import com.example.electionhub.model.Election;
 import com.example.electionhub.repository.CandidateRepository;
 import com.example.electionhub.repository.ElectionRepository;
-import jakarta.transaction.Transactional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Service
 public class CandidateService {
@@ -40,5 +41,11 @@ public class CandidateService {
 
     }
     // Other candidate related services
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public List<Candidate> getWinner(Election election) {
+        return candidateRepository.getWinners(election);
+    }
 }
 

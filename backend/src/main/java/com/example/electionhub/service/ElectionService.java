@@ -5,6 +5,8 @@ import com.example.electionhub.repository.ElectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ElectionService {
 
@@ -14,6 +16,7 @@ public class ElectionService {
     public Election createElection(Election election) {
         return electionRepository.save(election);
     }
+
 
     public List<Election> getUpcomingElections() {
         return electionRepository.findUpcomingElections();

@@ -36,7 +36,4 @@ public class Voter {
         this.voterId = voterId;
     }
 
-
-
-    // Getters and setters
 }
