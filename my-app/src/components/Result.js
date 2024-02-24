@@ -15,7 +15,7 @@ function ElectionWinner() {
             .then(data => {
                 if (data.error) {
                     setError(data.error);
-                    setWinners('');
+                    setWinners([]);
                 } else {
                     setWinners(data);
                     setError('');
@@ -23,7 +23,7 @@ function ElectionWinner() {
             })
             .catch(error => {
                 setError('An error occurred while fetching the winner.');
-                setWinners('');
+                setWinners([]);
             });
     };
 
@@ -37,13 +37,15 @@ function ElectionWinner() {
             {error && <p>{error}</p>}
 
             <h2>Winners</h2>
-            {winners && (
-                
+            {winners.length === 0 && <p>No winners found.</p>}
+            {winners.length === 1 && <p>Winner: {winners[0].name}</p>}
+            {winners.length > 1 && <p>It's a tie! Multiple winners.</p>}
+            {winners.length > 0 && (
                 <ul>
-                {winners.map(winner => (
-                  <li key={winner.id}>{winner.name}</li>
-                ))}
-              </ul>
+                    {winners.map(winner => (
+                        <li key={winner.id}>{winner.name}</li>
+                    ))}
+                </ul>
             )}
         </div>
     );
