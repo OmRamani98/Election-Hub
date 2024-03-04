@@ -1,7 +1,9 @@
 package com.example.electionhub.controller;
 
+import com.example.electionhub.model.Admin;
 import com.example.electionhub.model.Candidate;
 import com.example.electionhub.model.Election;
+import com.example.electionhub.repository.AdminRepository;
 import com.example.electionhub.repository.ElectionRepository;
 import com.example.electionhub.service.ElectionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,15 @@ public class ElectionController {
     @Autowired
     private ElectionService electionService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/creat")
-    public Election createElection(@RequestBody Election election) {
+    @Autowired
 
+    AdminRepository adminRepository;
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/creat/{adminusername}")
+    public Election createElection(@PathVariable String adminusername,@RequestBody Election election) {
+
+        Admin a=adminRepository.findByUsername(adminusername);
+        election.setAdmin(a);
         return electionService.createElection(election);
     }
     @CrossOrigin(origins = "http://localhost:3000")

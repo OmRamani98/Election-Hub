@@ -1,6 +1,7 @@
 package com.example.electionhub.controller;
 
 import com.example.electionhub.model.Admin;
+import com.example.electionhub.model.Candidate;
 import com.example.electionhub.model.Election;
 import com.example.electionhub.repository.AdminRepository;
 import com.example.electionhub.service.AdminService;
@@ -32,14 +33,17 @@ public class AdminController {
     @PostMapping("/login")
     public String login(@RequestBody Admin admin) {
         // Simulated authentication logic, replace it with your actual authentication mechanism
-        Admin savedAdmin = adminRepository.findById(admin.getId()).orElse(null);
+        Admin savedAdmin = adminRepository.findByUsername(admin.getUsername());
         if (savedAdmin != null && savedAdmin.getPassword().equals(admin.getPassword())) {
             return "Authentication successful";
         } else {
             return "Authentication failed";
         }
     }
-
-    // Other endpoints for admin functionalities
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/loginadmin/{adminusername}")
+    public Admin loginAdmin(@PathVariable String adminusername) {
+        return adminRepository.findByUsername(adminusername);
+    }
 
 }

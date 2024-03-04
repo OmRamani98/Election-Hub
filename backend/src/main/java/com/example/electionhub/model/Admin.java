@@ -1,6 +1,7 @@
 package com.example.electionhub.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -20,6 +21,7 @@ public class Admin {
 
         // Establishing one-to-many relationship with Election
         @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
+        @JsonManagedReference
         private Set<Election> elections;
 
         public Long getId() {
