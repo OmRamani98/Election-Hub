@@ -19,14 +19,26 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private AdminRepository adminRepository;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/")
+    @PostMapping("/registration")
     public Admin createAdmin(@RequestBody Admin admin) {
         return adminService.createAdmin(admin);
     }
 
-
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/login")
+    public String login(@RequestBody Admin admin) {
+        // Simulated authentication logic, replace it with your actual authentication mechanism
+        Admin savedAdmin = adminRepository.findById(admin.getId()).orElse(null);
+        if (savedAdmin != null && savedAdmin.getPassword().equals(admin.getPassword())) {
+            return "Authentication successful";
+        } else {
+            return "Authentication failed";
+        }
+    }
 
     // Other endpoints for admin functionalities
 
