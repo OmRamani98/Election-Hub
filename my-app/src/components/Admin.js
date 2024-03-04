@@ -5,24 +5,19 @@ function AdminPanel() {
     const [electionTitle, setElectionTitle] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const adminusername=sessionStorage.getItem("adminusername");
+    console.log(adminusername);
 
-    // const handleCreateElection = async () => {
-    //     try {
-    //         const response = await axios.post('http//locathost:8080/api/admin/election', { title: electionTitle, startDate, endDate });
-    //         console.log(response.data); // Handle response accordingly
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // };
+    
     const handleCreateElection = async () => {
         try {
             console.log(electionTitle, startDate, endDate );
-            const response = await fetch('http://localhost:8080/api/election/creat', {
+            const response = await fetch(`http://localhost:8080/api/election/creat/${adminusername}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ title: electionTitle, startDate, endDate })
+                body: JSON.stringify({ title: electionTitle, startDate, endDate})
                 
             });
             const data = await response.json();

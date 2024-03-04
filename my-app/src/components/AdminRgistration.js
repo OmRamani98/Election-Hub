@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function AdminRegistration () {
-  const [admin, setAdmin] = useState({ id: '', password: '' });
+  const [admin, setAdmin] = useState({ username: '', password: '' });
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
@@ -28,8 +28,8 @@ function AdminRegistration () {
       <h2>Admin Registration</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          ID:
-          <input type="text" name="id" value={admin.id} onChange={handleChange} />
+          User Name:
+          <input type="text" name="username" value={admin.username} onChange={handleChange} />
         </label>
         <label>
           Password:

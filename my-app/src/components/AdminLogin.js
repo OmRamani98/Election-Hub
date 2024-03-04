@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function AdminLogin() {
-  const [admin, setAdmin] = useState({ id: '', password: '' });
+  const [admin, setAdmin] = useState({ username: '', password: '' });
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
@@ -12,7 +12,9 @@ function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(admin);
       const response = await axios.post('http://localhost:8080/api/admin/login', admin);
+      sessionStorage.setItem("adminusername",admin.username);
       setMessage(response.data);
       window.location.href = '/admin'
     } catch (error) {
@@ -25,8 +27,8 @@ function AdminLogin() {
       <h2>Admin Login</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          ID:
-          <input type="text" name="id" value={admin.id} onChange={handleChange} />
+        User Name:
+          <input type="text" name="username" value={admin.username} onChange={handleChange} />
         </label>
         <label>
           Password:

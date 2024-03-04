@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CompletedElection from './CompletedElectionView'
 
 function ElectionWinner() {
     const [electionId, setElectionId] = useState('');
@@ -29,6 +30,7 @@ function ElectionWinner() {
 
     return (
         <div>
+            <CompletedElection/>
             <h1>Election Winner</h1>
             <label htmlFor="electionId">Enter Election ID:</label>
             <input type="text" id="electionId" value={electionId} onChange={handleInputChange} />
