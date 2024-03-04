@@ -1,31 +1,41 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const AdminLogin = () => {
-  const [password, setPassword] = useState('');
+function AdminLogin() {
+  const [admin, setAdmin] = useState({ id: '', password: '' });
+  const [message, setMessage] = useState('');
+
+  const handleChange = (e) => {
+    setAdmin({ ...admin, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/admin/login', { password });
-      console.log(response.data); // Handle successful authentication
-      window.location.href = '/'
+      const response = await axios.post('http://localhost:8080/api/admin/login', admin);
+      setMessage(response.data);
     } catch (error) {
-      console.error('Error:', error);
+      setMessage('Authentication failed');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="password"
-        placeholder="Enter password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <h2>Admin Login</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          ID:
+          <input type="text" name="id" value={admin.id} onChange={handleChange} />
+        </label>
+        <label>
+          Password:
+          <input type="password" name="password" value={admin.password} onChange={handleChange} />
+        </label>
+        <button type="submit">Login</button>
+      </form>
+      {message && <p>{message}</p>}
+    </div>
   );
-};
+}
 
 export default AdminLogin;
