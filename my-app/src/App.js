@@ -5,11 +5,11 @@ import VoterRegistration from './components/VoterRegistration';
 import VoterLogin from './components/VoterLogin';
 import Result from './components/Result';
 import CandidateList from './components/CandidateList';
-import vote from './styles/Vote.jpeg';
 import Admin from './components/Admin';
-
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LiveElectionView from './components/LiveElectionView';
+import AdminRegistration from './components/AdminRgistration';
+import AdminLogin from './components/AdminLogin';
 
 
 function App() {
@@ -20,6 +20,12 @@ function App() {
             <div>
                 <nav>
                     <ul>
+                    <li>
+                            <Link to="/admin-registration">Admin Registration</Link>
+                        </li>
+                        <li>
+                            <Link to="/admin-login">Admin Login</Link>
+                        </li>
                         <li>
                             <Link to="/voter-registration">Voter Registration</Link>
                         </li>
@@ -36,7 +42,9 @@ function App() {
                 </nav>
                 
                 <Routes>
-                    <Route path="/" element={<Admin />} />
+                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/admin-registration" element={<AdminRegistration />} />
+                    <Route path="/admin-login" element={<AdminLogin />} />
                     <Route path="/voter-registration" element={<VoterRegistration />} />
                     <Route path="/candidate-registration" element={<CandidateRegistration />} />
                     <Route path="/voter-login" element={<VoterLogin  />} />

@@ -20,6 +20,7 @@ function VoterRegistration() {
             if (response.ok) {
                 // Voter registration successful, handle success
                 console.log('Voter registered successfully');
+                window.location.href = '/voter-login'
             } else {
                 console.error('Voter registration failed');
             }

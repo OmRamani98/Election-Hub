@@ -17,6 +17,7 @@ function AdminRegistration () {
       setMessage(response.data);
       // Optionally, you can clear the form fields after successful registration
       setAdmin({ id: '', password: '' });
+      window.location.href = '/admin-login'
     } catch (error) {
       setMessage('Registration failed');
     }

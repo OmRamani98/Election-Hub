@@ -14,6 +14,7 @@ function AdminLogin() {
     try {
       const response = await axios.post('http://localhost:8080/api/admin/login', admin);
       setMessage(response.data);
+      window.location.href = '/admin'
     } catch (error) {
       setMessage('Authentication failed');
     }
