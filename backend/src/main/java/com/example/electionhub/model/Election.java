@@ -23,6 +23,18 @@ public class Election {
     @JsonManagedReference
     private Set<Candidate> candidates = new HashSet<>();
 
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id", nullable = false)
+    private Admin admin;
+
     public Set<Candidate> getCandidates() {
         return candidates;
     }
