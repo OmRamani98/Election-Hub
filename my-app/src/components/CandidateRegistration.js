@@ -10,6 +10,7 @@ function CandidateRegistration() {
     const [education, setEducation] = useState('');
     const [elections, setElections] = useState([]);
     const [selectedElectionId, setSelectedElectionId] = useState('');
+    const [image, setImage] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,25 +33,40 @@ function CandidateRegistration() {
     }, []);
     
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        fetch(`http://localhost:8080/api/candidate/register/${selectedElectionId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, party, email, age, gender, education }),
-        })
-        .then(response => {
+        
+        const candidateData = {
+            name,
+            party,
+            email,
+            age,
+            gender,
+            education,
+            image: image ? image.name : null  // Assuming you want to send the image name only
+        };
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/candidate/register/${selectedElectionId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(candidateData),
+            });
+
             if (response.ok) {
                 console.log('Candidate registered successfully');
             } else {
                 console.error('Candidate registration failed');
             }
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Network error:', error);
-        });
+        }
+    };
+
+    const handleImageChange = (e) => {
+        setImage(e.target.files[0]);
     };
 
     return (
@@ -64,11 +80,12 @@ function CandidateRegistration() {
                     <input type="number" value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
                     <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} placeholder="Gender" />
                     <input type="text" value={education} onChange={(e) => setEducation(e.target.value)} placeholder="Education" />
-                    <select style={{color:"black",width:"20vw"}} value={selectedElectionId} onChange={(e) => setSelectedElectionId(e.target.value)}>
+                    <select value={selectedElectionId} onChange={(e) => setSelectedElectionId(e.target.value)}>
                         {elections.map(election => (
                             <option style={{color:"black",width:"20vw"}} key={election.id} value={election.id}>{election.title}</option>
                         ))}
                     </select>
+                    <input type="file" accept="image/*" onChange={handleImageChange} />
                     <button type="submit">Register</button>
                 </form>
             </div>
