@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import CompletedElection from './CompletedElectionView'
 
 function ElectionWinner() {
-    const [electionId, setElectionId] = useState('');
-    const [winners, setWinners] = useState([]);
+       const [winners, setWinners] = useState([]);
     const [error, setError] = useState('');
+    const electionId=sessionStorage.getItem("electionCompletedId");
 
     const handleInputChange = (event) => {
         setElectionId(event.target.value);
@@ -30,12 +30,8 @@ function ElectionWinner() {
 
     return (
         <div>
-            <CompletedElection/>
+            
             <h1>Election Winner</h1>
-            <label htmlFor="electionId">Enter Election ID:</label>
-            <input type="text" id="electionId" value={electionId} onChange={handleInputChange} />
-            <button onClick={getWinner}>Get Winner</button>
-
             {error && <p>{error}</p>}
 
             <h2>Winners</h2>

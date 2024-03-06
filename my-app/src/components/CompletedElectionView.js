@@ -9,7 +9,8 @@ function LiveElectionView() {
 
     const handleElectionClick = (electionId) => {
         setSelectedElectionId(electionId);
-        sessionStorage.setItem("electionId",electionId);
+        sessionStorage.setItem("electionCompletedId",electionId);
+        window.location.href = '/result';
         };
     useEffect(() => {
         const fetchElections = async () => {
@@ -38,7 +39,7 @@ function LiveElectionView() {
 
     return (
         <div>
-            <h2>Live Elections</h2>
+            <h2>Completed Elections</h2>
             {error && <p>{error}</p>}
             <ul>
     {elections.map(election => (

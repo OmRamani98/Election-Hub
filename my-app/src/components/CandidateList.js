@@ -34,7 +34,6 @@ function CandidateList({ electionId }) {
             {error && <p>{error}</p>}
             <ul>
                 {candidates.map(candidate => (
-                    // <li key={candidate.id}>{candidate.name} - {candidate.party}</li>
                     <CandidateItem candidate={candidate}/>
                 ))}
             </ul>

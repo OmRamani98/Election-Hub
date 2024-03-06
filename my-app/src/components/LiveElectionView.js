@@ -6,11 +6,10 @@ function LiveElectionView() {
     const [error, setError] = useState('');
 
     const [selectedElectionId, setSelectedElectionId] = useState(null); // State to track the selected election ID
-
+    sessionStorage.setItem("adminusername",admin.username);
     const handleElectionClick = (electionId) => {
         setSelectedElectionId(electionId);
-        sessionStorage.setItem("electionId",electionId);
-        };
+               };
     useEffect(() => {
         const fetchElections = async () => {
             try {
@@ -21,9 +20,7 @@ function LiveElectionView() {
                     },
                   
                 });
-                // const data = await response.json();
-                // setElections(data);
-                if (response.ok) {
+                 if (response.ok) {
                     const data = await response.json();
                     setElections(data);
                 } else {
