@@ -1,11 +1,7 @@
-// Candidate.java
 package com.example.electionhub.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Candidate {
@@ -15,8 +11,18 @@ public class Candidate {
 
     private String name;
     private String party;
+    private String email; // Adding email attribute
+    private int age; // Adding age attribute
+    private String gender; // Adding gender attribute
+    private String education; // Adding education attribute
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "election_id")
+    @JsonBackReference
+    private Election election;
 
+    // Constructors, getters, and setters
+    // ...
 
     public Long getId() {
         return id;
@@ -34,10 +40,6 @@ public class Candidate {
         this.election = election;
     }
 
-    @ManyToOne(fetch =FetchType.LAZY)
-    @JoinColumn(name = "election_id")
-    @JsonBackReference
-    private Election election;
     public String getName() {
         return name;
     }
@@ -53,5 +55,36 @@ public class Candidate {
     public void setParty(String party) {
         this.party = party;
     }
-// Getters and setters
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
 }
