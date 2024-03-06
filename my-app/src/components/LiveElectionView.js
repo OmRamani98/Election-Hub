@@ -6,7 +6,7 @@ function LiveElectionView() {
     const [error, setError] = useState('');
 
     const [selectedElectionId, setSelectedElectionId] = useState(null); // State to track the selected election ID
-    sessionStorage.setItem("adminusername",admin.username);
+    
     const handleElectionClick = (electionId) => {
         setSelectedElectionId(electionId);
                };

@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import CompletedElection from './CompletedElectionView'
+import React, { useState ,useEffect } from 'react';
+
 
 function ElectionWinner() {
        const [winners, setWinners] = useState([]);
     const [error, setError] = useState('');
     const electionId=sessionStorage.getItem("electionCompletedId");
 
-    const handleInputChange = (event) => {
-        setElectionId(event.target.value);
-    };
+   
 
     const getWinner = () => {
         fetch(`http://localhost:8080/api/candidate/${electionId}/winner`)
@@ -27,6 +25,9 @@ function ElectionWinner() {
                 setWinners([]);
             });
     };
+    useEffect(() => {
+        getWinner(); // Call getWinner when component mounts
+    }, []);
 
     return (
         <div>

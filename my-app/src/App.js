@@ -8,7 +8,7 @@ import CandidateList from './components/CandidateList';
 import Admin from './components/Admin';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LiveElectionView from './components/LiveElectionView';
-import LiveElectionView from './components/CompletedElectionView';
+import CompletedElectionView from './components/CompletedElectionView';
 import AdminRegistration from './components/AdminRgistration';
 import AdminLogin from './components/AdminLogin';
 
@@ -37,7 +37,7 @@ function App() {
                             <Link to="/voter-login">Voter Login</Link>
                         </li>
                         <li>
-                            <Link to="/result">View Result</Link>
+                            <Link to="/completed-election">View Result</Link>
                         </li>
                     </ul>
                 </nav>
