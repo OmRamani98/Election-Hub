@@ -12,6 +12,11 @@ public class Voter {
     private String name;
     private String voterId;
 
+    public String getEmail() {
+        return email;
+    }
+
+    private String email;
     public Long getId() {
         return id;
     }
