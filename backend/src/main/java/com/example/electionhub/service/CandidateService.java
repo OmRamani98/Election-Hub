@@ -6,12 +6,12 @@ import com.example.electionhub.repository.CandidateRepository;
 import com.example.electionhub.repository.ElectionRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CandidateService {
@@ -34,11 +34,17 @@ public class CandidateService {
 
     public Candidate findCandidateById(Long id){ return candidateRepository.findById(id).orElse(null);}
 
-    public Candidate registerCandidate(Candidate candidate, long electionId) {
-        Election e=elctionRepository.findById(electionId).orElse(null);
-        candidate.setElection(e);
-        return candidateRepository.save(candidate);
-
+    public Candidate registerCandidate(Candidate candidate, long electionId, MultipartFile file) {
+        try {
+            Election e = elctionRepository.findById(electionId).orElse(null);
+            candidate.setElection(e);
+            candidate.setImage(file.getBytes());
+            return candidateRepository.save(candidate);
+        } catch (IOException e) {
+            // Handle IOException
+            e.printStackTrace();
+            return null;
+        }
     }
     // Other candidate related services
     @PersistenceContext

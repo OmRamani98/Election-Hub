@@ -9,6 +9,7 @@ import com.example.electionhub.service.CandidateService;
 import com.example.electionhub.service.ElectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,10 +25,12 @@ public class CandidateController {
     @Autowired
     private ElectionRepository electionRepository;
 
+
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/register/{electionId}")
-    public Candidate registerCandidate(@RequestBody Candidate candidate, @PathVariable long electionId) {
-        return candidateService.registerCandidate(candidate, electionId);
+    public Candidate registerCandidate(@ModelAttribute Candidate candidate, @PathVariable long electionId,
+                                       @RequestParam("file") MultipartFile file) {
+        return candidateService.registerCandidate(candidate, electionId, file);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

@@ -15,7 +15,9 @@ public class Candidate {
     private int age; // Adding age attribute
     private String gender; // Adding gender attribute
     private String education; // Adding education attribute
-    private String image; // Adding image attribute
+    @Lob
+    @Column(name = "image", length = 1048576)
+    private byte[] image;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "election_id")
@@ -89,11 +91,11 @@ public class Candidate {
         this.education = education;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 }
