@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CandidateItem from './CandidateItem';
+import '../styles/CandidateList.css';
 
 function CandidateList({ electionId }) {
     const [candidates, setCandidates] = useState([]);
@@ -13,7 +14,6 @@ function CandidateList({ electionId }) {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                   
                 });
                 if (response.ok) {
                     const data = await response.json();
@@ -29,14 +29,20 @@ function CandidateList({ electionId }) {
     }, [electionId]);
 
     return (
-        <div>
+        <div style={{paddingLeft:"100px", paddingRight:"100px"}}>
             <h2>Candidates for Election</h2>
             {error && <p>{error}</p>}
-            <ul>
+            <div className="candidate-list-container">
                 {candidates.map(candidate => (
-                    <CandidateItem candidate={candidate}/>
+                    <CandidateItem key={candidate.id} candidate={candidate} />
                 ))}
-            </ul>
+                {candidates.map(candidate => (
+                    <CandidateItem key={candidate.id} candidate={candidate} />
+                ))}
+                {candidates.map(candidate => (
+                    <CandidateItem key={candidate.id} candidate={candidate} />
+                ))}
+            </div>
         </div>
     );
 }

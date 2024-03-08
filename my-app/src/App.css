@@ -1,19 +1,23 @@
 /* App.css */
 
 /* Navigation menu styles */
-.App {
-  /* background-image: url(./styles/Vote.jpeg); */
-  /* background-repeat: no-repeat; */
-  /* Additional styling */
-  /* background-size: cover;  */
-  /* width: 100vw; */
-  /* height: 100vh; */
-}
 
+.App {
+ 
+  width: 100vw;
+  height: 100vh;
+  /* background: url(./styles/vote1.jpg); 
+  background-size: cover;  */
+}
+body{
+  background: url(./styles/vote2.jpg) no-repeat fixed; 
+  background-size: cover; 
+  
+}
 nav {
-  background-color: rgba(0, 0, 0, 1); /* Semi-transparent gray background */
+  /* background-color:rgb(171, 226, 246); */
   /* Additional styling */
-  backdrop-filter: blur(100px);
+  /* backdrop-filter: blur(5px); */
   display: flex; /* Use flexbox for centering */
   justify-content: center; /* Center the items horizontally */
   align-items: center; /* Center the items vertically */
@@ -36,8 +40,9 @@ nav li:last-child {
 }
 
 nav li a {
+  background-color:rgb(28, 71, 109);
   text-decoration: none;
-  color: #fff; /* Text color for links */
+  color: rgb(171, 226, 246); /* Text color for links */
   font-weight: bold;
   padding: 20px 30px; /* Increase padding to make clickable area larger */
   font-size: 18px; /* Increase font size */

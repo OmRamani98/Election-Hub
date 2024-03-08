@@ -3,54 +3,24 @@
 .candidate-list-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-}
-
-.candidate-list-header {
-    font-size: 2em;
-    margin-bottom: 30px;
-    color: #333;
-    text-align: center;
-    text-transform: uppercase;
+    justify-content: space-evenly; 
+    
 }
 
 .candidate-item {
+    width: calc(33% - 10px); /* Calculate width to fit four items per row with margin */
+    margin-bottom: 2px;
     background-color: #f9f9f9;
-    border: 1px solid #ddd; /* Add border */
+    border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
-    margin: 15px;
+    padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
     transition: transform 0.3s ease-in-out;
+    box-sizing: border-box; /* Include padding and border in the element's total width */
 }
 
 .candidate-item:hover {
     transform: translateY(-5px);
 }
 
-.candidate-name {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    color: #444;
-}
-
-.candidate-party {
-    font-size: 1em;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.vote-button {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.vote-button:hover {
-    background-color: #2980b9;
-}
+/* Add any other styles as needed */

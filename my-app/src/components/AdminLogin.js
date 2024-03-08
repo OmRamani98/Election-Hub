@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../styles/CandidateRegistration.css'; // Import the CSS file
 
 function AdminLogin() {
   const [admin, setAdmin] = useState({ username: '', password: '' });
@@ -23,17 +24,11 @@ function AdminLogin() {
   };
 
   return (
-    <div>
+    <div className="registration-container"> {/* Add the class name here */}
       <h2>Admin Login</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-        User Name:
-          <input type="text" name="username" value={admin.username} onChange={handleChange} />
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" value={admin.password} onChange={handleChange} />
-        </label>
+        <input type="text" name="username" value={admin.username} onChange={handleChange} placeholder="User Name" />
+        <input type="password" name="password" value={admin.password} onChange={handleChange} placeholder="Password" />
         <button type="submit">Login</button>
       </form>
       {message && <p>{message}</p>}

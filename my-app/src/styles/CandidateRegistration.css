@@ -2,15 +2,16 @@
     margin-top: 50px;
     width: 80%;
     max-width: 400px;
-    background-color: #f9f9f9;
+    background-color: rgb(28, 71, 109);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
   }
   
   .login-container h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: rgb(171, 226, 246);
   }
   
   .login-container form {
