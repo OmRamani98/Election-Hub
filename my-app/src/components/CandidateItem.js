@@ -1,16 +1,11 @@
-// CandidateItem.js
 import React, { useState } from 'react';
-import '../styles/CandidateItem.css'
+import '../styles/CandidateItem.css';
 
 function CandidateItem({ candidate }) {
-
     const handleVote = async () => {
-       
-           const voterId=sessionStorage.getItem("voterId");
-            const electionId= sessionStorage.getItem("electionId");
-            const candidateId= candidate.id;
-
-       
+        const voterId = sessionStorage.getItem("voterId");
+        const electionId = sessionStorage.getItem("electionId");
+        const candidateId = candidate.id;
 
         console.log(sessionStorage.getItem("voterId"));
         try {
@@ -19,7 +14,6 @@ function CandidateItem({ candidate }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-               
             });
             if (response.ok) {
                 console.log('Vote submitted successfully');
@@ -32,13 +26,16 @@ function CandidateItem({ candidate }) {
     };
 
     return (
-
         <div className="candidate-item" key={candidate.id}>
             <h3 className="candidate-name">{candidate.name}</h3>
             <p className="candidate-party">{candidate.party}</p>
+            <p className="candidate-email">Email: {candidate.email}</p>
+            <p className="candidate-age">Age: {candidate.age}</p>
+            <p className="candidate-gender">Gender: {candidate.gender}</p>
+            <p className="candidate-education">Education: {candidate.education}</p>
+            <img src={`data:image/jpeg;base64,${candidate.image}`} alt={candidate.name} className="candidate-image" />
             <button className="vote-button" onClick={handleVote}>Vote</button>
         </div>
-
     );
 }
 
