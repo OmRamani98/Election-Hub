@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/VoterLogin.css';
+import '../styles/CandidateRegistration.css';
+import axios from 'axios';
 
 function CandidateRegistration() {
     const [name, setName] = useState('');
@@ -28,34 +29,30 @@ function CandidateRegistration() {
                 console.error('Error fetching upcoming elections:', error);
             }
         };
-    
+
         fetchData();
     }, []);
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        const candidateData = {
-            name,
-            party,
-            email,
-            age,
-            gender,
-            education,
-            image: image ? image.name : null  // Assuming you want to send the image name only
-        };
+
+        const formData = new FormData();
+        formData.append('file', image);
+        formData.append('name', name);
+        formData.append('party', party);
+        formData.append('email', email);
+        formData.append('age', age);
+        formData.append('gender', gender);
+        formData.append('education', education);
 
         try {
-            const response = await fetch(`http://localhost:8080/api/candidate/register/${selectedElectionId}`, {
-                method: 'POST',
+            const response = await axios.post(`http://localhost:8080/api/candidate/register/${selectedElectionId}`, formData, {
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'multipart/form-data',
                 },
-                body: JSON.stringify(candidateData),
             });
 
-            if (response.ok) {
+            if (response.status === 200) {
                 console.log('Candidate registered successfully');
             } else {
                 console.error('Candidate registration failed');
@@ -71,8 +68,8 @@ function CandidateRegistration() {
 
     return (
         <center>
-            <div className="login-container"> 
-                <center><h2>Candidate Registration</h2></center>
+            <div className="registration-container">
+                <h2>Candidate Registration</h2>
                 <form onSubmit={handleSubmit}>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
                     <input type="text" value={party} onChange={(e) => setParty(e.target.value)} placeholder="Party" />
@@ -82,7 +79,7 @@ function CandidateRegistration() {
                     <input type="text" value={education} onChange={(e) => setEducation(e.target.value)} placeholder="Education" />
                     <select value={selectedElectionId} onChange={(e) => setSelectedElectionId(e.target.value)}>
                         {elections.map(election => (
-                            <option style={{color:"black",width:"20vw"}} key={election.id} value={election.id}>{election.title}</option>
+                            <option key={election.id} value={election.id}>{election.title}</option>
                         ))}
                     </select>
                     <input type="file" accept="image/*" onChange={handleImageChange} />
