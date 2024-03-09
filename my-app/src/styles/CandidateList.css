@@ -1,9 +1,30 @@
 /* CandidateList.css */
-
+body{
+    padding-left:10vw;
+    padding-right:10vw;
+}
+.candidate-list{
+    padding-left:10vw;
+    padding-right:10vw;    
+  
+    margin-top: 20px;
+}  
+.candidate-list h2{
+    background-color: rgb(28, 71, 109);    
+    color: rgb(171, 226, 246);
+    background-color: rgb(25, 65, 102);
+  text-decoration: none;
+    font-weight: bold;
+  padding: 20px 30px;
+  font-size: 18px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
 .candidate-list-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly; 
+   
     
 }
 

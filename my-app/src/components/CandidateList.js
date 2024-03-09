@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import CandidateItem from './CandidateItem';
 import '../styles/CandidateList.css';
 
-function CandidateList({ electionId }) {
+function CandidateList({ election}) {
     const [candidates, setCandidates] = useState([]);
     const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchCandidates = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/candidate/candidates/${electionId}`, {
+                const response = await fetch(`http://localhost:8080/api/candidate/candidates/${election.id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -26,22 +26,18 @@ function CandidateList({ electionId }) {
             }
         };
         fetchCandidates();
-    }, [electionId]);
+    }, [election]);
 
     return (
         <div style={{paddingLeft:"100px", paddingRight:"100px"}}>
-            <h2>Candidates for Election</h2>
+             < div className="candidate-list" >
+            <h2>Candidates for Election:{election.title}</h2>
             {error && <p>{error}</p>}
             <div className="candidate-list-container">
-                {candidates.map(candidate => (
-                    <CandidateItem key={candidate.id} candidate={candidate} />
+                       {candidates.map(candidate => (
+                    <CandidateItem key={candidate.id} candidate={candidate} election={election}/>
                 ))}
-                {candidates.map(candidate => (
-                    <CandidateItem key={candidate.id} candidate={candidate} />
-                ))}
-                {candidates.map(candidate => (
-                    <CandidateItem key={candidate.id} candidate={candidate} />
-                ))}
+            </div>
             </div>
         </div>
     );

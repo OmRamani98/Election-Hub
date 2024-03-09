@@ -47,8 +47,8 @@ function LiveElectionView() {
             )}
             {selectedElection && (
                 <div>
-                    <h2>{selectedElection.title}</h2>
-                    <CandidateList electionId={selectedElection.id} />
+                    
+                    <CandidateList election={selectedElection} />
                 </div>
             )}
         </center>

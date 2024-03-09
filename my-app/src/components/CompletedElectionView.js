@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import CandidateList from './CandidateList';
+import '../styles/Liveelection.css'; 
 
-function LiveElectionView() {
+function CompletedElectionView() {
     const [elections, setElections] = useState([]);
     const [error, setError] = useState('');
-
     const [selectedElectionId, setSelectedElectionId] = useState(null); // State to track the selected election ID
 
     const handleElectionClick = (electionId) => {
         setSelectedElectionId(electionId);
-        sessionStorage.setItem("electionCompletedId",electionId);
+        sessionStorage.setItem("electionCompletedId", electionId);
         window.location.href = '/result';
-        };
+    };
+
     useEffect(() => {
         const fetchElections = async () => {
             try {
@@ -20,15 +20,13 @@ function LiveElectionView() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                  
                 });
-                // const data = await response.json();
-                // setElections(data);
+
                 if (response.ok) {
                     const data = await response.json();
                     setElections(data);
                 } else {
-                    setError('Failed to fetch live elections');
+                    setError('Failed to fetch completed elections');
                 }
             } catch (error) {
                 setError('Network error. Please try again later.');
@@ -38,17 +36,18 @@ function LiveElectionView() {
     }, []);
 
     return (
-        <div>
-            <h2>Completed Elections</h2>
-            {error && <p>{error}</p>}
-            <ul>
-    {elections.map(election => (
-        <li key={election.id} onClick={() => handleElectionClick(election.id)}>{election.title}</li>
-    ))}
-</ul>
-{selectedElectionId&& <CandidateList electionId={selectedElectionId}/>}
-        </div>
+        <center>
+            <div className="live-elections-container">
+                <h2>Completed Elections</h2>
+                {error && <p>{error}</p>}
+                {elections.map(election => (
+                    <div key={election.id} onClick={() => handleElectionClick(election.id)}>
+                        {election.title}
+                    </div>
+                ))}
+            </div>
+        </center>
     );
 }
 
-export default LiveElectionView;
+export default CompletedElectionView;

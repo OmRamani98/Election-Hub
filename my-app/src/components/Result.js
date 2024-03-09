@@ -1,12 +1,10 @@
-import React, { useState ,useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import '../styles/Result.css'; // Import CSS file
 
 function ElectionWinner() {
-       const [winners, setWinners] = useState([]);
+    const [winners, setWinners] = useState([]);
     const [error, setError] = useState('');
-    const electionId=sessionStorage.getItem("electionCompletedId");
-
-   
+    const electionId= sessionStorage.getItem("electionCompletedId");
 
     const getWinner = () => {
         fetch(`http://localhost:8080/api/candidate/${electionId}/winner`)
@@ -25,24 +23,27 @@ function ElectionWinner() {
                 setWinners([]);
             });
     };
+
     useEffect(() => {
         getWinner(); // Call getWinner when component mounts
     }, []);
 
     return (
-        <div>
+        <div className="election-winner-container">
+            <h1 className="election-winner-title">Election Winner</h1>
+            {error && <p className="election-winner-message">{error}</p>}
             
-            <h1>Election Winner</h1>
-            {error && <p>{error}</p>}
-
-            <h2>Winners</h2>
-            {winners.length === 0 && <p>No winners found.</p>}
-            {winners.length === 1 && <p>Winner: {winners[0].name}</p>}
-            {winners.length > 1 && <p>It's a tie! Multiple winners.</p>}
+            {winners.length === 0 && <p className="election-winner-message">No winners found.</p>}
+            {winners.length > 1 && <p className="election-winner-message">It's a tie! Multiple winners.</p>}
             {winners.length > 0 && (
-                <ul>
+                <ul className="winner-list">
                     {winners.map(winner => (
-                        <li key={winner.id}>{winner.name}</li>
+                        <li key={winner.id} className="winner-item">
+                            <img src={`data:image/png;base64,${winner.image}`} alt={winner.name} className="winner-image" />
+                            <p className="winner-details">
+                                <span className="winner-name">{winner.name}</span>( <span className="winner-party">{winner.party} )</span>
+                            </p>
+                        </li>
                     ))}
                 </ul>
             )}

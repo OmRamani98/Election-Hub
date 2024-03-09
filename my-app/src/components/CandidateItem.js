@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/CandidateItem.css';
 
-function CandidateItem({ candidate }) {
+function CandidateItem({ candidate ,election}) {
     const handleVote = async () => {
         const voterId = sessionStorage.getItem("voterId");
-        const electionId = sessionStorage.getItem("electionId");
+        const electionId = election.id;
         const candidateId = candidate.id;
 
-        console.log(sessionStorage.getItem("voterId"));
+        console.log(sessionStorage.getItem("voterId"),electionId,candidateId);
         try {
             const response = await fetch(`http://localhost:8080/api/vote/submitVote/${voterId}/${electionId}/${candidateId}`, {
                 method: 'POST',
