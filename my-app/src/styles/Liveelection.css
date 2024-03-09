@@ -1,0 +1,50 @@
+
+.live-elections-container {
+        width: 80%;
+    margin: 10vh;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    background-color: rgb(28, 71, 109);
+}
+
+
+/* Styles for the live election list */
+.live-elections-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: rgb(171, 226, 246);
+}
+
+.live-elections-container div {
+    background-color: #f5f5f5;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.live-elections-container div:hover {
+    background-color: #e0e0e0;
+}
+
+/* Styles for the selected election details */
+.selected-election-container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.selected-election-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Styles for the error message */
+.error-message {
+    color: red;
+    font-size: 18px;
+    margin-bottom: 20px;
+}

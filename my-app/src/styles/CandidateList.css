@@ -10,7 +10,7 @@
 .candidate-item {
     width: calc(33% - 10px); /* Calculate width to fit four items per row with margin */
     margin-bottom: 2px;
-    background-color: #f9f9f9;
+    background: whitesmoke;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/CandidateRegistration.css';
+// import '../styles/CandidateRegistration.css';
+import '../styles/VoterLogin.css'; 
+
 import axios from 'axios';
 
 function CandidateRegistration() {
@@ -68,7 +70,7 @@ function CandidateRegistration() {
 
     return (
         <center>
-            <div className="registration-container">
+           <div className="login-container">
                 <h2>Candidate Registration</h2>
                 <form onSubmit={handleSubmit}>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />

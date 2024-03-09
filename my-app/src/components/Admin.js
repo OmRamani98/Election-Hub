@@ -29,17 +29,16 @@ function AdminPanel() {
     
 
     return (
-        <div>
-            <h2>Admin Panel</h2>
+        <center><div className="login-container">
+            <h2>Create Election</h2>
             <div>
-                <h3>Create Election</h3>
                 <input type="text" placeholder="Title" value={electionTitle} onChange={(e) => setElectionTitle(e.target.value)} />
                 <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
                 <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
                 <button onClick={handleCreateElection}>Create Election</button>
             </div>
             {/* Other admin functionalities can be added here */}
-        </div>
+        </div></center>
     );
 }
 

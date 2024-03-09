@@ -1,6 +1,6 @@
 /* Candidate item container */
 .candidate-item {
-    background-color: #ffffff;
+    background-color: whitesmoke;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     padding: 20px;
@@ -19,8 +19,8 @@
     margin: 0 auto 15px; /* Center the image and add some bottom margin */
     display: block;
     object-fit: cover; /* Ensure the image fills the circle */
-    border: 14px solid #a9a5a5; /* Add a white border */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Add a white border */
+    box-shadow: 0 0 10px rgb(170, 226, 246) ; /* Add a subtle shadow */
   }
   
   /* Candidate name */

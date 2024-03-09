@@ -28,8 +28,8 @@ function CandidateItem({ candidate }) {
     return (
         <div className="candidate-item" key={candidate.id}>
             <img src={`data:image/jpeg;base64,${candidate.image}`} alt={candidate.name} className="candidate-image" />
-            <h3 className="candidate-name">{candidate.name}</h3>
-            <p className="candidate-party">{candidate.party}</p>
+            <h3 className="candidate-name">Name: {candidate.name}</h3>
+            <p className="candidate-party">party: {candidate.party}</p>
             <p className="candidate-age">Age: {candidate.age}</p>
             <p className="candidate-gender">Gender: {candidate.gender}</p>
             <p className="candidate-education">Education: {candidate.education}</p>

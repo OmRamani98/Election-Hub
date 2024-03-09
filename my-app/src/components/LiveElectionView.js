@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import CandidateList from './CandidateList';
-
+import '../styles/Liveelection.css'; 
 function LiveElectionView() {
-    const [elections, setElections] = useState([]);
+    const [liveElections, setLiveElections] = useState([]);
+    const [selectedElection, setSelectedElection] = useState(null);
     const [error, setError] = useState('');
 
-    const [selectedElectionId, setSelectedElectionId] = useState(null); // State to track the selected election ID
-    
-    const handleElectionClick = (electionId) => {
-        setSelectedElectionId(electionId);
-               };
+    const handleElectionClick = (election) => {
+        setSelectedElection(election);
+    };
+
     useEffect(() => {
         const fetchElections = async () => {
             try {
@@ -18,11 +18,10 @@ function LiveElectionView() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                  
                 });
-                 if (response.ok) {
+                if (response.ok) {
                     const data = await response.json();
-                    setElections(data);
+                    setLiveElections(data);
                 } else {
                     setError('Failed to fetch live elections');
                 }
@@ -34,16 +33,25 @@ function LiveElectionView() {
     }, []);
 
     return (
-        <div>
-            <h2>Live Elections</h2>
-            {error && <p>{error}</p>}
-            <ul>
-    {elections.map(election => (
-        <li key={election.id} onClick={() => handleElectionClick(election.id)}>{election.title}</li>
-    ))}
-</ul>
-{selectedElectionId&& <CandidateList electionId={selectedElectionId}/>}
-        </div>
+        <center>
+            {!selectedElection && (
+                <div className="live-elections-container">
+                    <h2>Live Elections</h2>
+                    {error && <p>{error}</p>}
+                    {liveElections.map(election => (
+                        <div key={election.id} onClick={() => handleElectionClick(election)}>
+                            {election.title}
+                        </div>
+                    ))}
+                </div>
+            )}
+            {selectedElection && (
+                <div>
+                    <h2>{selectedElection.title}</h2>
+                    <CandidateList electionId={selectedElection.id} />
+                </div>
+            )}
+        </center>
     );
 }
 

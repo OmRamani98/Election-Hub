@@ -49,6 +49,7 @@ function App() {
                     <Route path="/voter-registration" element={<VoterRegistration />} />
                     <Route path="/candidate-registration" element={<CandidateRegistration />} />
                     <Route path="/voter-login" element={<VoterLogin  />} />
+                    <Route path="/" element={<VoterLogin  />} />
                     <Route path="/result" element={<Result />} />
                     <Route path="/candidates" element={<CandidateList />} />
                     <Route path="/live-election" element={<LiveElectionView />} />

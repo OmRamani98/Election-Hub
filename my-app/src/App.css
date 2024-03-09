@@ -1,60 +1,53 @@
-/* App.css */
 
-/* Navigation menu styles */
+body {
+  margin: 0; 
+  padding: 0; 
+  background: url(./styles/vote2.jpg) no-repeat fixed;
+  background-size: cover;
+  backdrop-filter: blur(4.2px);
+}
 
 .App {
- 
-  width: 100vw;
-  height: 100vh;
-  /* background: url(./styles/vote1.jpg); 
-  background-size: cover;  */
-}
-body{
-  background: url(./styles/vote2.jpg) no-repeat fixed; 
-  background-size: cover; 
-  
-}
+  width: 100vw; 
+  height: 100vh; 
+  }
 nav {
-  /* background-color:rgb(171, 226, 246); */
-  /* Additional styling */
-  /* backdrop-filter: blur(5px); */
-  display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Center the items horizontally */
-  align-items: center; /* Center the items vertically */
-  height: 70px; /* Increase the height of the navigation bar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
 }
 
 nav ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  display: flex; /* Ensure list items are displayed in a row */
+  display: flex;
 }
 
 nav li {
-  margin-right: 40px; /* Increase spacing between items */
+  margin-right: 1vw;
 }
 
 nav li:last-child {
-  margin-right: 0; /* Remove margin from the last list item */
+  margin-right: 0;
 }
 
 nav li a {
-  background-color:rgb(28, 71, 109);
+  background-color: rgb(25, 65, 102);
   text-decoration: none;
-  color: rgb(171, 226, 246); /* Text color for links */
+  color: rgb(171, 226, 246);
   font-weight: bold;
-  padding: 20px 30px; /* Increase padding to make clickable area larger */
-  font-size: 18px; /* Increase font size */
-  border-radius: 10px; /* Add rounded corners */
+  padding: 20px 30px;
+  font-size: 18px;
+  border-radius: 10px;
   transition: background-color 0.3s ease;
 }
 
 nav li a:hover {
-  background-color: rgba(0, 0, 0, 0.5); /* Darker background color on hover */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Active link styles */
 nav li.active a {
-  background-color: rgba(0, 0, 0, 0.5); /* Darker background color for active link */
+  background-color: rgba(0, 0, 0, 0.5);
 }
