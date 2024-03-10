@@ -17,6 +17,7 @@ function CandidateItem({ candidate ,election}) {
             });
             if (response.ok) {
                 console.log('Vote submitted successfully');
+                window.location.href = '/successfully-voted';
             } else {
                 console.error('Failed to submit vote');
             }

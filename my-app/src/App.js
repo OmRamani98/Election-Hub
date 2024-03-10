@@ -11,6 +11,7 @@ import LiveElectionView from './components/LiveElectionView';
 import CompletedElectionView from './components/CompletedElectionView';
 import AdminRegistration from './components/AdminRgistration';
 import AdminLogin from './components/AdminLogin';
+import SuccessfullyVoted from './components/SuccessfullyVoted';
 
 
 function App() {
@@ -54,7 +55,8 @@ function App() {
                     <Route path="/candidates" element={<CandidateList />} />
                     <Route path="/live-election" element={<LiveElectionView />} />
                     <Route path="/completed-election" element={<CompletedElectionView />} />
-                    
+                    <Route path="/successfully-voted" element={<SuccessfullyVoted/>} />
+        
            
                 </Routes>
                 

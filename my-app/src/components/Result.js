@@ -36,7 +36,7 @@ function ElectionWinner() {
             {winners.length === 0 && <p className="election-winner-message">No winners found.</p>}
             {winners.length > 1 && <p className="election-winner-message">It's a tie! Multiple winners.</p>}
             {winners.length > 0 && (
-                <div className="winner-list">
+                <div className="winner-list" style={{borderRadius:'14%',border:'3px solid rgb(28, 71, 109)'}}>
                     {winners.map(winner => (
                         <center><div key={winner.id} className="winner-item">
                             <img src={`data:image/png;base64,${winner.image}`} alt={winner.name} className="winner-image" />
