@@ -20,6 +20,8 @@ public class CandidateService {
     private CandidateRepository candidateRepository;
     @Autowired
     private ElectionRepository elctionRepository;
+    @Autowired
+    private EmailService emailService;
 
 
 
@@ -37,6 +39,7 @@ public class CandidateService {
     public Candidate registerCandidate(Candidate candidate, long electionId, MultipartFile file) {
         try {
             Election e = elctionRepository.findById(electionId).orElse(null);
+            emailService.sendSimpleMessage(candidate.getEmail(),"You have Successfully Register ","You have Successfully Register For Election "+e.getTitle());
             candidate.setElection(e);
             candidate.setImage(file.getBytes());
             return candidateRepository.save(candidate);

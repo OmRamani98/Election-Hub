@@ -8,9 +8,7 @@ import com.example.electionhub.repository.CandidateRepository;
 import com.example.electionhub.repository.ElectionRepository;
 import com.example.electionhub.repository.VoteRepository;
 import com.example.electionhub.repository.VoterRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
@@ -24,6 +22,8 @@ public class VoteService {
     @Autowired
     private VoteRepository voteRepository;
 
+    @Autowired
+    private EmailService emailService;
 
     // Other vote related services
 
@@ -49,6 +49,7 @@ public class VoteService {
         // Check if the voter has already voted in this election
 
         // Save the vote
+        emailService.sendSimpleMessage(voter.getEmail(),"You have Successfully Submited Vote ","You have Successfully Submited Vote To" +candidate.getName()+" of "+candidate.getParty() +" in "+election.getTitle());
         Vote vote = new Vote(candidate,voter,election);
          voteRepository.save(vote);
     }

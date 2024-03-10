@@ -5,8 +5,8 @@ import com.example.electionhub.model.Candidate;
 import com.example.electionhub.model.Election;
 import com.example.electionhub.repository.CandidateRepository;
 import com.example.electionhub.repository.ElectionRepository;
-import com.example.electionhub.service.CandidateService;
-import com.example.electionhub.service.ElectionService;
+import com.example.electionhub.service.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +22,7 @@ public class CandidateController {
 
     @Autowired
     private CandidateService candidateService;
+
     @Autowired
     private ElectionRepository electionRepository;
 
@@ -36,6 +37,7 @@ public class CandidateController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/candidates/{electionId}")
     public List<Candidate> getAllCandidatesOfElection(@PathVariable long electionId) {
+
         return candidateService.getAllCandidatesByElectionId(electionId);
     }
 

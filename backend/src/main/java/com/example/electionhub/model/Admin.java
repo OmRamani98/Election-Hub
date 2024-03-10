@@ -1,7 +1,7 @@
-package com.example.electionhub.model;
-
+import com.example.electionhub.model.Election;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import javax.validation.constraints.*;
 
 import java.util.Set;
 
@@ -12,25 +12,27 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Username is required")
     @Column(unique = true)
     private String username;
 
+    @NotBlank(message = "Password is required")
     private String password;
 
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email should be valid")
     @Column(unique = true)
     private String email;
 
-    private String firstName; // Adding first name attribute
+    @NotBlank(message = "First Name is required")
+    private String firstName;
 
-    private String lastName; // Adding last name attribute
+    @NotBlank(message = "Last Name is required")
+    private String lastName;
 
-    // Establishing one-to-many relationship with Election
     @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Election> elections;
-
-    // Constructors, getters, and setters
-    // ...
 
     public Long getId() {
         return id;
@@ -87,4 +89,6 @@ public class Admin {
     public void setElections(Set<Election> elections) {
         this.elections = elections;
     }
+// Constructors, getters, and setters
+    // ...
 }
