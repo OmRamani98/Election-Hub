@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Result.css'; // Import CSS file
-
+import { Link } from 'react-router-dom';
 function ElectionWinner() {
     const [winners, setWinners] = useState([]);
     const [error, setError] = useState('');
@@ -42,13 +42,14 @@ function ElectionWinner() {
                             <img src={`data:image/png;base64,${winner.image}`} alt={winner.name} className="winner-image" />
                             <p className="winner-details">
                                 <h3 className="winner-name"> Name :{winner.name}</h3>
-                                <p className="winner-party"> Party :{winner.party} </p>
+                                <p className="winner-party"> Party :{winner.party} </p>  
                             </p>
                              </div></center>
 
                     ))}
                 </div>
             )}
+            <Link to="/result" style={{ background:'white',padding:'1vh',borderRadius:'1vh',textDecoration: 'none', color: 'blue', fontWeight: 'bold', fontSize: '18px' }}>Go Back to View Result</Link>
         </div>
     );
 }

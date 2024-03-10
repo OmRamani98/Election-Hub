@@ -21,7 +21,8 @@ function AdminPanel() {
                 
             });
             const data = await response.json();
-            console.log(data); // Handle response according
+            console.log(data); 
+            window.location.href = '/successfully-election-created';
         } catch (error) {
             console.error('Error:', error);
         }

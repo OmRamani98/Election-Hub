@@ -56,6 +56,7 @@ function CandidateRegistration() {
 
             if (response.status === 200) {
                 console.log('Candidate registered successfully');
+                window.location.href = '/successfully-register-candidate';
             } else {
                 console.error('Candidate registration failed');
             }
