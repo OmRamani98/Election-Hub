@@ -49,7 +49,7 @@ function ElectionWinner() {
                     ))}
                 </div>
             )}
-            <Link to="/result" style={{ background:'white',padding:'1vh',borderRadius:'1vh',textDecoration: 'none', color: 'blue', fontWeight: 'bold', fontSize: '18px' }}>Go Back to View Result</Link>
+            <Link to="/completed-election" style={{ background:'white',padding:'1vh',borderRadius:'1vh',textDecoration: 'none', color: 'blue', fontWeight: 'bold', fontSize: '18px' }}>Go Back to View Result</Link>
         </div>
     );
 }

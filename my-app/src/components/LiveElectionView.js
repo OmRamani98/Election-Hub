@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import CandidateList from './CandidateList';
 import '../styles/Liveelection.css'; 
+import SuccessfullyVoted from './SuccessfullyVoted';
 function LiveElectionView() {
     const [liveElections, setLiveElections] = useState([]);
     const [selectedElection, setSelectedElection] = useState(null);
     const [error, setError] = useState('');
-
+    const voterId=sessionStorage.getItem("voterId");
     const handleElectionClick = (election) => {
         setSelectedElection(election);
     };
@@ -13,7 +14,7 @@ function LiveElectionView() {
     useEffect(() => {
         const fetchElections = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/election/live', {
+                const response = await fetch(`http://localhost:8080/api/election/live/${voterId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
