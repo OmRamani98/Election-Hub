@@ -36,16 +36,18 @@ function ElectionWinner() {
             {winners.length === 0 && <p className="election-winner-message">No winners found.</p>}
             {winners.length > 1 && <p className="election-winner-message">It's a tie! Multiple winners.</p>}
             {winners.length > 0 && (
-                <ul className="winner-list">
+                <div className="winner-list">
                     {winners.map(winner => (
-                        <li key={winner.id} className="winner-item">
+                        <center><div key={winner.id} className="winner-item">
                             <img src={`data:image/png;base64,${winner.image}`} alt={winner.name} className="winner-image" />
                             <p className="winner-details">
-                                <span className="winner-name">{winner.name}</span>( <span className="winner-party">{winner.party} )</span>
+                                <h3 className="winner-name"> Name :{winner.name}</h3>
+                                <p className="winner-party"> Party :{winner.party} </p>
                             </p>
-                        </li>
+                             </div></center>
+
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );
