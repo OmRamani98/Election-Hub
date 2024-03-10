@@ -22,8 +22,8 @@ public class ElectionService {
         return electionRepository.findUpcomingElections();
     }
 
-    public List<Election> getLiveElections() {
-        return electionRepository.findLiveElections();
+    public List<Election> getLiveElections(Long voterId) {
+        return electionRepository.findLiveElections(voterId);
     }
 
     public List<Election> getCompletedElections() {

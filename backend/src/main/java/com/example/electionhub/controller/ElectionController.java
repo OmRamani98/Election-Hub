@@ -39,9 +39,9 @@ public class ElectionController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/live")
-    public List<Election> getLiveElections() {
-        return electionService.getLiveElections();
+    @GetMapping("/live/{voterId}")
+    public List<Election> getLiveElections(@PathVariable long voterId) {
+        return electionService.getLiveElections(voterId);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
