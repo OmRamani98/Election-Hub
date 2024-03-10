@@ -5,14 +5,15 @@ import VoterRegistration from './components/VoterRegistration';
 import VoterLogin from './components/VoterLogin';
 import Result from './components/Result';
 import CandidateList from './components/CandidateList';
-import Admin from './components/Admin';
+import Admin from './components/CreateElection';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LiveElectionView from './components/LiveElectionView';
 import CompletedElectionView from './components/CompletedElectionView';
 import AdminRegistration from './components/AdminRgistration';
 import AdminLogin from './components/AdminLogin';
 import SuccessfullyVoted from './components/SuccessfullyVoted';
-
+import SuccessfullyElectionCreated from './components/SuccessfullyElectionCreated';
+import SuccessfullyRegisterCandidate from './components/SuccessfullyRegisterCandidate';
 
 function App() {
  
@@ -28,11 +29,12 @@ function App() {
                         <li>
                             <Link to="/admin-login">Admin Login</Link>
                         </li>
-                        <li>
-                            <Link to="/voter-registration">Voter Registration</Link>
-                        </li>
+                       
                         <li>
                             <Link to="/candidate-registration">Candidate Registration</Link>
+                        </li>
+                        <li>
+                            <Link to="/voter-registration">Voter Registration</Link>
                         </li>
                         <li>
                             <Link to="/voter-login">Voter Login</Link>
@@ -56,6 +58,9 @@ function App() {
                     <Route path="/live-election" element={<LiveElectionView />} />
                     <Route path="/completed-election" element={<CompletedElectionView />} />
                     <Route path="/successfully-voted" element={<SuccessfullyVoted/>} />
+                    <Route path="/successfully-election-created" element={<SuccessfullyElectionCreated/>} />
+                    <Route path="/successfully-register-candidate" element={<SuccessfullyRegisterCandidate/>} />
+                    {/* <Route path="/successfully-voted" element={<SuccessfullyVoted/>} /> */}
         
            
                 </Routes>
