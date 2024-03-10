@@ -14,6 +14,7 @@ import AdminLogin from './components/AdminLogin';
 import SuccessfullyVoted from './components/SuccessfullyVoted';
 import SuccessfullyElectionCreated from './components/SuccessfullyElectionCreated';
 import SuccessfullyRegisterCandidate from './components/SuccessfullyRegisterCandidate';
+import UpcomingElectionView from './components/UpcomingElectionView';
 
 function App() {
  
@@ -31,7 +32,7 @@ function App() {
                         </li>
                        
                         <li>
-                            <Link to="/candidate-registration">Candidate Registration</Link>
+                            <Link to="/upcoming-election">Candidate Registration</Link>
                         </li>
                         <li>
                             <Link to="/voter-registration">Voter Registration</Link>
@@ -56,6 +57,7 @@ function App() {
                     <Route path="/result" element={<Result />} />
                     <Route path="/candidates" element={<CandidateList />} />
                     <Route path="/live-election" element={<LiveElectionView />} />
+                    <Route path="/upcoming-election" element={<UpcomingElectionView />} />
                     <Route path="/completed-election" element={<CompletedElectionView />} />
                     <Route path="/successfully-voted" element={<SuccessfullyVoted/>} />
                     <Route path="/successfully-election-created" element={<SuccessfullyElectionCreated/>} />
