@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CandidateList from './CandidateList';
 import '../styles/Liveelection.css'; 
-import SuccessfullyVoted from './SuccessfullyVoted';
+
 function LiveElectionView() {
     const [liveElections, setLiveElections] = useState([]);
     const [selectedElection, setSelectedElection] = useState(null);
